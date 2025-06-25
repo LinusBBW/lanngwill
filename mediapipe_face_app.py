@@ -30,7 +30,7 @@ class ImprovedFaceAlert:
         self.alert_cooldown = 0
 
         # Verbesserte Parameter
-        self.recognition_threshold = 0.85 # Cosine Similarity Schwelle
+        self.recognition_threshold = 0.85  # Cosine Similarity Schwelle
         self.min_samples_per_person = 3  # Mindestens 3 Samples pro Person
 
         self.load_known_faces()
@@ -162,29 +162,23 @@ class ImprovedFaceAlert:
         print("💾 Gesichter gespeichert!")
 
     def show_intruder_popup(self):
-        """Lustiges Pop-up für Eindringlinge"""
+        """Einfaches Pop-up ohne Threading (funktioniert perfekt!)"""
+        messages = [
+            "🚨 EINDRINGLING ERKANNT! 🚨\nWer bist du denn?!",
+            "⚠️ FREMDES GESICHT! ⚠️\nZeig deinen Ausweis!",
+            "🕵️ UNBEKANNTE PERSON! 🕵️\nDu kommst hier nicht rein!",
+            "🚫 ZUGANG VERWEIGERT! 🚫\nNur VIPs erlaubt!",
+            "👽 ALIEN DETECTED! 👽\nBist du von einem anderen Planeten?",
+            "🤖 BEEP BEEP! 🤖\nRoboter-Sicherheitssystem aktiviert!",
+            "🎭 MASKENBALL? 🎭\nOder bist du einfach neu hier?",
+            "🔍 GESICHT UNBEKANNT! 🔍\nBist du ein Spion?!"
+        ]
 
-        def popup_thread():
-            root = tk.Tk()
-            root.withdraw()
+        import random
+        message = random.choice(messages)
 
-            messages = [
-                "🚨 SICHERHEITSALARM! 🚨\nUnbekanntes Gesicht entdeckt!",
-                "👮 HALT! 👮\nWer geht da?!",
-                "🕵️ EINDRINGLING! 🕵️\nZeig deine ID!",
-                "🚫 STOPP! 🚫\nDu gehörst nicht hier her!",
-                "👽 ALIEN ALERT! 👽\nBist du von der Erde?",
-                "🤖 BEEP BEEP! 🤖\nSicherheitssystem aktiviert!",
-                "🎭 UNBEKANNT! 🎭\nBist du verkleidet?",
-                "🔍 GESICHT SCAN FEHLGESCHLAGEN! 🔍\nSind das deine echten Augen?"
-            ]
-
-            import random
-            message = random.choice(messages)
-            messagebox.showwarning("🚨 SICHERHEITSALARM 🚨", message)
-            root.destroy()
-
-        threading.Thread(target=popup_thread, daemon=True).start()
+        # Pop-up direkt im Hauptthread - kein Threading nötig!
+        messagebox.showwarning("🚨 SICHERHEITSALARM 🚨", message)
 
     def capture_multiple_samples(self):
         """Erfasst mehrere Trainingsbilder einer Person"""
