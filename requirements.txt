@@ -1,7 +1,20 @@
-# MediaPipe Face Recognition - Requirements (Kein CMake nötig!)
+# Einfache Security Face Recognition - Requirements
 # Installation: pip install -r requirements.txt
 
-opencv-python
-mediapipe
-numpy
-pillow
+# Basis-Komponenten
+opencv-python>=4.5.0
+mediapipe>=0.8.10
+numpy>=1.21.0
+pillow>=8.0.0
+
+# Machine Learning
+scikit-learn>=1.0.0
+
+# System-Kontrolle
+psutil>=5.8.0
+
+# WICHTIG: Für 100% zuverlässige Sicherheitsfunktionen
+pyautogui>=0.9.50
+
+# GUI (bereits in Python enthalten)
+# tkinter ist standardmäßig in Python enthalten
