@@ -1,0 +1,7 @@
+# MediaPipe Face Recognition - Requirements (Kein CMake nötig!)
+# Installation: pip install -r requirements.txt
+
+opencv-python
+mediapipe
+numpy
+pillow
